@@ -34,7 +34,7 @@ go_library(
         "//go/subtle/random",
         "//go/tink",
         "@com_github_golang_protobuf//proto:go_default_library",
-        "@org_golang_x_crypto//chacha20poly1305:go_default_library",
+        "@org_golang_x_crypto//chacha20poly1305",
     ],
 )
 
@@ -68,6 +68,6 @@ go_test(
         "//go/testutil",
         "//go/tink",
         "@com_github_golang_protobuf//proto:go_default_library",
-        "@org_golang_x_crypto//chacha20poly1305:go_default_library",
+        "@org_golang_x_crypto//chacha20poly1305",
     ],
 )

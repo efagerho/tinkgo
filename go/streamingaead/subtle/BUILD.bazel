@@ -12,6 +12,7 @@ go_library(
     deps = [
         "//go/aead/subtle",
         "//go/mac/subtle",
+        "//go/streamingaead/subtle/noncebased",
         "//go/subtle",
         "//go/subtle/random",
     ],

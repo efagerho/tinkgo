@@ -11,9 +11,9 @@ go_library(
     deps = [
         "//go/core/registry",
         "//go/tink",
-        "@org_golang_google_api//cloudkms/v1:go_default_library",
-        "@org_golang_x_oauth2//:go_default_library",
-        "@org_golang_x_oauth2//google:go_default_library",
+        "@org_golang_google_api//cloudkms/v1:cloudkms",
+        "@org_golang_x_oauth2//:oauth2",
+        "@org_golang_x_oauth2//google",
     ],
 )
 

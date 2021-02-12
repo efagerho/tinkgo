@@ -4,5 +4,5 @@ go_library(
     name = "internal",
     srcs = ["internal.go"],
     importpath = "github.com/google/tink/go/internal",
-    visibility = ["//:__subpackages__"],
+    visibility = ["//go:__subpackages__"],
 )

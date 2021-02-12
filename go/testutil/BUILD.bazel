@@ -33,7 +33,7 @@ go_library(
         "//go/subtle/random",
         "//go/tink",
         "@com_github_golang_protobuf//proto:go_default_library",
-        "@org_golang_x_crypto//ed25519:go_default_library",
+        "@org_golang_x_crypto//ed25519",
     ],
 )
 

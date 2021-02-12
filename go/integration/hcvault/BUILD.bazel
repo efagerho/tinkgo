@@ -11,7 +11,7 @@ go_library(
     deps = [
         "//go/core/registry",
         "//go/tink",
-        "@com_github_hashicorp_vault_api//:go_default_library",
+        "@com_github_hashicorp_vault_api//:api",
     ],
 )
 
@@ -21,6 +21,7 @@ go_test(
         "hcvault_aead_test.go",
         "hcvault_client_test.go",
     ],
+    data = glob(["testdata/**"]),
     embed = [":hcvault"],
     deps = [
         "//go/aead",

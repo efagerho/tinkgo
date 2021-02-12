@@ -14,7 +14,7 @@ go_library(
     visibility = ["//visibility:public"],
     deps = [
         "//go/subtle",
-        "@org_golang_x_crypto//ed25519:go_default_library",
+        "@org_golang_x_crypto//ed25519",
     ],
 )
 
@@ -29,6 +29,6 @@ go_test(
     deps = [
         "//go/subtle",
         "//go/subtle/random",
-        "@org_golang_x_crypto//ed25519:go_default_library",
+        "@org_golang_x_crypto//ed25519",
     ],
 )

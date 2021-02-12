@@ -16,7 +16,7 @@ go_library(
     deps = [
         "//go/subtle/random",
         "//go/tink",
-        "@org_golang_x_crypto//chacha20poly1305:go_default_library",
+        "@org_golang_x_crypto//chacha20poly1305",
     ],
 )
 
@@ -37,6 +37,6 @@ go_test(
         "//go/mac/subtle",
         "//go/subtle/random",
         "//go/tink",
-        "@org_golang_x_crypto//chacha20poly1305:go_default_library",
+        "@org_golang_x_crypto//chacha20poly1305",
     ],
 )
