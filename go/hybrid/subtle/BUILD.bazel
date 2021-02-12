@@ -1,7 +1,7 @@
 load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
 
 go_library(
-    name = "subtle",
+    name = "go_default_library",
     srcs = [
         "ecies_aead_hkdf_dem_helper.go",
         "ecies_aead_hkdf_hybrid_decrypt.go",
@@ -13,13 +13,13 @@ go_library(
     importpath = "github.com/google/tink/go/hybrid/subtle",
     visibility = ["//visibility:public"],
     deps = [
-        "//go/subtle",
-        "//go/tink",
+        "//go/subtle:go_default_library",
+        "//go/tink:go_default_library",
     ],
 )
 
 go_test(
-    name = "subtle_test",
+    name = "go_default_test",
     srcs = ["elliptic_curves_test.go"],
-    embed = [":subtle"],
+    embed = [":go_default_library"],
 )

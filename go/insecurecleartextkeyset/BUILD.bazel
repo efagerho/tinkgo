@@ -1,25 +1,25 @@
 load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
 
 go_library(
-    name = "insecurecleartextkeyset",
+    name = "go_default_library",
     srcs = ["insecurecleartextkeyset.go"],
     importpath = "github.com/google/tink/go/insecurecleartextkeyset",
     visibility = ["//visibility:public"],
     deps = [
-        "//go/internal",
-        "//go/keyset",
-        "//go/proto/tink_go_proto",
+        "//go/internal:go_default_library",
+        "//go/keyset:go_default_library",
+        "//go/proto/tink_go_proto:go_default_library",
     ],
 )
 
 go_test(
-    name = "insecurecleartextkeyset_test",
+    name = "go_default_test",
     srcs = ["insecurecleartextkeyset_test.go"],
-    embed = [":insecurecleartextkeyset"],
+    embed = [":go_default_library"],
     deps = [
-        "//go/keyset",
-        "//go/proto/tink_go_proto",
-        "//go/testutil",
+        "//go/keyset:go_default_library",
+        "//go/proto/tink_go_proto:go_default_library",
+        "//go/testutil:go_default_library",
         "@com_github_golang_protobuf//proto:go_default_library",
     ],
 )

@@ -1,7 +1,7 @@
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
 go_library(
-    name = "ed25519_go_proto",
+    name = "go_default_library",
     srcs = ["ed25519.pb.go"],
     importpath = "github.com/google/tink/go/proto/ed25519_go_proto",
     visibility = ["//visibility:public"],

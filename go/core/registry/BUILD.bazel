@@ -1,7 +1,7 @@
 load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
 
 go_library(
-    name = "registry",
+    name = "go_default_library",
     srcs = [
         "key_manager.go",
         "kms_client.go",
@@ -11,25 +11,25 @@ go_library(
     importpath = "github.com/google/tink/go/core/registry",
     visibility = ["//visibility:public"],
     deps = [
-        "//go/proto/tink_go_proto",
-        "//go/tink",
+        "//go/proto/tink_go_proto:go_default_library",
+        "//go/tink:go_default_library",
         "@com_github_golang_protobuf//proto:go_default_library",
     ],
 )
 
 go_test(
-    name = "registry_test",
+    name = "go_default_test",
     srcs = ["registry_test.go"],
-    embed = [":registry"],
+    embed = [":go_default_library"],
     deps = [
-        "//go/aead",
-        "//go/mac",
-        "//go/mac/subtle",
-        "//go/proto/aes_gcm_go_proto",
-        "//go/proto/common_go_proto",
-        "//go/proto/hmac_go_proto",
-        "//go/proto/tink_go_proto",
-        "//go/testutil",
+        "//go/aead:go_default_library",
+        "//go/mac:go_default_library",
+        "//go/mac/subtle:go_default_library",
+        "//go/proto/aes_gcm_go_proto:go_default_library",
+        "//go/proto/common_go_proto:go_default_library",
+        "//go/proto/hmac_go_proto:go_default_library",
+        "//go/proto/tink_go_proto:go_default_library",
+        "//go/testutil:go_default_library",
         "@com_github_golang_protobuf//proto:go_default_library",
     ],
 )
