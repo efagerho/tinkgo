@@ -1,0 +1,61 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "signature",
+    srcs = [
+        "ecdsa_signer_key_manager.go",
+        "ecdsa_verifier_key_manager.go",
+        "ed25519_signer_key_manager.go",
+        "ed25519_verifier_key_manager.go",
+        "proto.go",
+        "signature.go",
+        "signature_key_templates.go",
+        "signer_factory.go",
+        "verifier_factory.go",
+    ],
+    importpath = "github.com/google/tink/go/signature",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//go/core/cryptofmt",
+        "//go/core/primitiveset",
+        "//go/core/registry",
+        "//go/keyset",
+        "//go/proto/common_go_proto",
+        "//go/proto/ecdsa_go_proto",
+        "//go/proto/ed25519_go_proto",
+        "//go/proto/tink_go_proto",
+        "//go/signature/subtle",
+        "//go/subtle",
+        "//go/tink",
+        "@com_github_golang_protobuf//proto:go_default_library",
+        "@org_golang_x_crypto//ed25519:go_default_library",
+    ],
+)
+
+go_test(
+    name = "signature_test",
+    srcs = [
+        "ecdsa_signer_key_manager_test.go",
+        "ecdsa_verifier_key_manager_test.go",
+        "ed25519_signer_key_manager_test.go",
+        "ed25519_verifier_key_manager_test.go",
+        "signature_factory_test.go",
+        "signature_key_templates_test.go",
+        "signature_test.go",
+    ],
+    embed = [":signature"],
+    deps = [
+        "//go/core/registry",
+        "//go/keyset",
+        "//go/mac",
+        "//go/proto/common_go_proto",
+        "//go/proto/ecdsa_go_proto",
+        "//go/proto/ed25519_go_proto",
+        "//go/proto/tink_go_proto",
+        "//go/signature/subtle",
+        "//go/subtle/random",
+        "//go/testkeyset",
+        "//go/testutil",
+        "@com_github_golang_protobuf//proto:go_default_library",
+    ],
+)

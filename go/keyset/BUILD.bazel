@@ -1,0 +1,50 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "keyset",
+    srcs = [
+        "binary_io.go",
+        "handle.go",
+        "json_io.go",
+        "keyset.go",
+        "manager.go",
+        "mem_io.go",
+        "reader.go",
+        "validation.go",
+        "writer.go",
+    ],
+    importpath = "github.com/google/tink/go/keyset",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//go/core/primitiveset",
+        "//go/core/registry",
+        "//go/internal",
+        "//go/proto/tink_go_proto",
+        "//go/subtle/random",
+        "//go/tink",
+        "@com_github_golang_protobuf//jsonpb:go_default_library_gen",
+        "@com_github_golang_protobuf//proto:go_default_library",
+    ],
+)
+
+go_test(
+    name = "keyset_test",
+    srcs = [
+        "binary_io_test.go",
+        "handle_test.go",
+        "json_io_test.go",
+        "manager_test.go",
+        "validation_test.go",
+    ],
+    embed = [":keyset"],
+    deps = [
+        "//go/aead/subtle",
+        "//go/mac",
+        "//go/proto/common_go_proto",
+        "//go/proto/tink_go_proto",
+        "//go/subtle/random",
+        "//go/testkeyset",
+        "//go/testutil",
+        "@com_github_golang_protobuf//proto:go_default_library",
+    ],
+)

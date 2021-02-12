@@ -1,0 +1,18 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "tink",
+    srcs = [
+        "aead.go",
+        "deterministic_aead.go",
+        "hybrid_decrypt.go",
+        "hybrid_encrypt.go",
+        "mac.go",
+        "signer.go",
+        "streamingaead.go",
+        "verifier.go",
+        "version.go",
+    ],
+    importpath = "github.com/google/tink/go/tink",
+    visibility = ["//visibility:public"],
+)

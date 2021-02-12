@@ -1,0 +1,36 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "awskms",
+    srcs = [
+        "aws_kms_aead.go",
+        "aws_kms_client.go",
+    ],
+    importpath = "github.com/google/tink/go/integration/awskms",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//go/core/registry",
+        "//go/tink",
+        "@com_github_aws_aws_sdk_go//aws:go_default_library",
+        "@com_github_aws_aws_sdk_go//aws/credentials:go_default_library",
+        "@com_github_aws_aws_sdk_go//aws/session:go_default_library",
+        "@com_github_aws_aws_sdk_go//service/kms:go_default_library",
+        "@com_github_aws_aws_sdk_go//service/kms/kmsiface:go_default_library",
+    ],
+)
+
+go_test(
+    name = "awskms_test",
+    srcs = [
+        "aws_kms_aead_test.go",
+        "aws_kms_client_test.go",
+    ],
+    embed = [":awskms"],
+    deps = [
+        "//go/aead",
+        "//go/core/registry",
+        "//go/keyset",
+        "//go/subtle/random",
+        "//go/tink",
+    ],
+)

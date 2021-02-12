@@ -1,0 +1,51 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "testutil",
+    srcs = [
+        "constant.go",
+        "testutil.go",
+        "wycheproofutil.go",
+    ],
+    importpath = "github.com/google/tink/go/testutil",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//go/core/registry",
+        "//go/daead/subtle",
+        "//go/hybrid/subtle",
+        "//go/keyset",
+        "//go/mac",
+        "//go/proto/aes_cmac_go_proto",
+        "//go/proto/aes_cmac_prf_go_proto",
+        "//go/proto/aes_ctr_hmac_streaming_go_proto",
+        "//go/proto/aes_gcm_go_proto",
+        "//go/proto/aes_gcm_hkdf_streaming_go_proto",
+        "//go/proto/aes_siv_go_proto",
+        "//go/proto/common_go_proto",
+        "//go/proto/ecdsa_go_proto",
+        "//go/proto/ecies_aead_hkdf_go_proto",
+        "//go/proto/ed25519_go_proto",
+        "//go/proto/hkdf_prf_go_proto",
+        "//go/proto/hmac_go_proto",
+        "//go/proto/hmac_prf_go_proto",
+        "//go/proto/tink_go_proto",
+        "//go/subtle",
+        "//go/subtle/random",
+        "//go/tink",
+        "@com_github_golang_protobuf//proto:go_default_library",
+        "@org_golang_x_crypto//ed25519:go_default_library",
+    ],
+)
+
+go_test(
+    name = "testutil_test",
+    srcs = [
+        "testutil_test.go",
+        "wycheproofutil_test.go",
+    ],
+    embed = [":testutil"],
+    deps = [
+        "//go/subtle/random",
+        "//go/tink",
+    ],
+)

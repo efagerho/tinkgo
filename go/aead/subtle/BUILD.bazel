@@ -1,0 +1,42 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "subtle",
+    srcs = [
+        "aead.go",
+        "aes_ctr.go",
+        "aes_gcm.go",
+        "chacha20poly1305.go",
+        "encrypt_then_authenticate.go",
+        "ind_cpa.go",
+        "xchacha20poly1305.go",
+    ],
+    importpath = "github.com/google/tink/go/aead/subtle",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//go/subtle/random",
+        "//go/tink",
+        "@org_golang_x_crypto//chacha20poly1305:go_default_library",
+    ],
+)
+
+go_test(
+    name = "subtle_test",
+    srcs = [
+        "aead_test.go",
+        "aes_ctr_test.go",
+        "aes_gcm_test.go",
+        "chacha20poly1305_test.go",
+        "chacha20poly1305_vectors_test.go",
+        "encrypt_then_authenticate_test.go",
+        "xchacha20poly1305_test.go",
+        "xchacha20poly1305_vectors_test.go",
+    ],
+    embed = [":subtle"],
+    deps = [
+        "//go/mac/subtle",
+        "//go/subtle/random",
+        "//go/tink",
+        "@org_golang_x_crypto//chacha20poly1305:go_default_library",
+    ],
+)

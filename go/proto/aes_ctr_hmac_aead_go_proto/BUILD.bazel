@@ -1,0 +1,13 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "aes_ctr_hmac_aead_go_proto",
+    srcs = ["aes_ctr_hmac_aead.pb.go"],
+    importpath = "github.com/google/tink/go/proto/aes_ctr_hmac_aead_go_proto",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//go/proto/aes_ctr_go_proto",
+        "//go/proto/hmac_go_proto",
+        "@com_github_golang_protobuf//proto:go_default_library",
+    ],
+)

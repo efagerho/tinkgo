@@ -1,0 +1,26 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "subtle",
+    srcs = [
+        "aes_cmac.go",
+        "hkdf.go",
+        "hmac.go",
+    ],
+    importpath = "github.com/google/tink/go/prf/subtle",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//go/subtle",
+        "@org_golang_x_crypto//hkdf:go_default_library",
+    ],
+)
+
+go_test(
+    name = "subtle_test",
+    srcs = [
+        "aes_cmac_test.go",
+        "hkdf_test.go",
+        "hmac_test.go",
+    ],
+    embed = [":subtle"],
+)

@@ -1,0 +1,50 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "daead",
+    srcs = [
+        "aes_siv_key_manager.go",
+        "daead.go",
+        "daead_factory.go",
+        "daead_key_templates.go",
+    ],
+    importpath = "github.com/google/tink/go/daead",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//go/core/cryptofmt",
+        "//go/core/primitiveset",
+        "//go/core/registry",
+        "//go/daead/subtle",
+        "//go/keyset",
+        "//go/proto/aes_siv_go_proto",
+        "//go/proto/tink_go_proto",
+        "//go/subtle/random",
+        "//go/tink",
+        "@com_github_golang_protobuf//proto:go_default_library",
+    ],
+)
+
+go_test(
+    name = "daead_test",
+    srcs = [
+        "aes_siv_key_manager_test.go",
+        "daead_factory_test.go",
+        "daead_key_templates_test.go",
+        "daead_test.go",
+    ],
+    embed = [":daead"],
+    deps = [
+        "//go/core/cryptofmt",
+        "//go/core/registry",
+        "//go/daead/subtle",
+        "//go/keyset",
+        "//go/proto/aes_siv_go_proto",
+        "//go/proto/tink_go_proto",
+        "//go/signature",
+        "//go/subtle/random",
+        "//go/testkeyset",
+        "//go/testutil",
+        "//go/tink",
+        "@com_github_golang_protobuf//proto:go_default_library",
+    ],
+)

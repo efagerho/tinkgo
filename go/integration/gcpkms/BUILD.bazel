@@ -1,0 +1,34 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "gcpkms",
+    srcs = [
+        "gcp_kms_aead.go",
+        "gcp_kms_client.go",
+    ],
+    importpath = "github.com/google/tink/go/integration/gcpkms",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//go/core/registry",
+        "//go/tink",
+        "@org_golang_google_api//cloudkms/v1:go_default_library",
+        "@org_golang_x_oauth2//:go_default_library",
+        "@org_golang_x_oauth2//google:go_default_library",
+    ],
+)
+
+go_test(
+    name = "gcpkms_test",
+    srcs = [
+        "gcp_kms_aead_test.go",
+        "gcp_kms_client_test.go",
+    ],
+    embed = [":gcpkms"],
+    deps = [
+        "//go/aead",
+        "//go/core/registry",
+        "//go/keyset",
+        "//go/subtle/random",
+        "//go/tink",
+    ],
+)

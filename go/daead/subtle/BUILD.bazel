@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "subtle",
+    srcs = ["aes_siv.go"],
+    importpath = "github.com/google/tink/go/daead/subtle",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "subtle_test",
+    srcs = ["aes_siv_test.go"],
+    embed = [":subtle"],
+    deps = ["//go/subtle/random"],
+)

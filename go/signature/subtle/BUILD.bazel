@@ -1,0 +1,34 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "subtle",
+    srcs = [
+        "ecdsa.go",
+        "ecdsa_signer.go",
+        "ecdsa_verifier.go",
+        "ed25519_signer.go",
+        "ed25519_verifier.go",
+        "encoding.go",
+    ],
+    importpath = "github.com/google/tink/go/signature/subtle",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//go/subtle",
+        "@org_golang_x_crypto//ed25519:go_default_library",
+    ],
+)
+
+go_test(
+    name = "subtle_test",
+    srcs = [
+        "ecdsa_signer_verifier_test.go",
+        "ecdsa_test.go",
+        "ed25519_signer_verifier_test.go",
+    ],
+    embed = [":subtle"],
+    deps = [
+        "//go/subtle",
+        "//go/subtle/random",
+        "@org_golang_x_crypto//ed25519:go_default_library",
+    ],
+)

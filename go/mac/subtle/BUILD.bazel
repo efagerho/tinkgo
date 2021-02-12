@@ -1,0 +1,25 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "subtle",
+    srcs = [
+        "cmac.go",
+        "hmac.go",
+    ],
+    importpath = "github.com/google/tink/go/mac/subtle",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//go/prf/subtle",
+        "//go/subtle",
+    ],
+)
+
+go_test(
+    name = "subtle_test",
+    srcs = [
+        "cmac_test.go",
+        "hmac_test.go",
+    ],
+    embed = [":subtle"],
+    deps = ["//go/subtle/random"],
+)
